@@ -12,34 +12,71 @@ function getUserChoice() {
 }
 
 //function for determining winner
-function getWinner() {
+function getWinner(userSelection, computerSelection) {
+  let roundWinner = "";
   if (userSelection === computerSelection) {
-    return "Its a tie"
+    roundWinner = "tie";
   } else if (
     (userSelection === "rock" && computerSelection === "scissors") ||
     (userSelection === "scissors" && computerSelection === "paper") ||
     (userSelection === "paper" && computerSelection === "rock")
   ) {
-    return "You win!"
+    roundWinner = "user";
   } else {
-    return "You lose :("
+    roundWinner = "computer";
+  }
+  return roundWinner;
+}
+
+function updateScore(winner, userScore, computerScore) {
+  switch (winner) {
+    case "user":
+      userScore++;
+      break;
+    case "computer":
+      computerScore++;
+      break;
+  }
+  return [userScore, computerScore];
+}
+
+function sendScoreUpdate(winner, userScore, computerScore) {
+  let totalScoreCopy =
+    "computer total score is " +
+    computerScore +
+    ", your total score is " +
+    userScore;
+  switch (winner) {
+    case "tie":
+      console.log("Its a tie! " + totalScoreCopy);
+      break;
+    case "user":
+      console.log("You won! " + totalScoreCopy);
+      break;
+    case "computer":
+      console.log("You lost :( " + totalScoreCopy);
+      break;
   }
 }
 
-
-//game function
-//let user score
-//let computer score
-//get user choice, get computer choice, get winner.
-//get winner function increments score variables
-//maybe console log scores
-//check to see if user score + computer score = 5
-//if yes check which score is higher. Declare winner
-//if no then repeat function
+function game(userScore, computerScore) {
+  let computerSelection = getComputerChoice();
+  let userSelection = getUserChoice();
+  let winner = getWinner(userSelection, computerSelection);
+  [userScore, computerScore] = updateScore(winner, userScore, computerScore);
+  sendScoreUpdate(winner, userScore, computerScore);
+  return [userScore, computerScore];
+}
 
 
-    let computerSelection = getComputerChoice();
-    let userSelection = getUserChoice();
-    console.log(getWinner());
+function playRound() {
+  let userScore = 0;
+  let computerScore = 0;
+  [userScore, computerScore] = game(userScore, computerScore);
+  [userScore, computerScore] = game(userScore, computerScore);
+  [userScore, computerScore] = game(userScore, computerScore);
+  [userScore, computerScore] = game(userScore, computerScore);
+  [userScore, computerScore] = game(userScore, computerScore);
+}
 
-
+playRound();
