@@ -68,6 +68,15 @@ function game(userScore, computerScore) {
   return [userScore, computerScore];
 }
 
+function getRoundWinner(userScore, computerScore) {
+  if (userScore === computerScore) {
+    console.log("Its a tie!");
+  } else if (userScore > computerScore) {
+    console.log("You win!");
+  } else {
+    console.log("You lose :(");
+  }
+}
 
 function playRound() {
   let userScore = 0;
@@ -77,6 +86,7 @@ function playRound() {
   [userScore, computerScore] = game(userScore, computerScore);
   [userScore, computerScore] = game(userScore, computerScore);
   [userScore, computerScore] = game(userScore, computerScore);
+  getRoundWinner(userScore, computerScore);
 }
 
 playRound();
