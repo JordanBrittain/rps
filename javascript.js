@@ -89,4 +89,20 @@ function playRound() {
   getRoundWinner(userScore, computerScore);
 }
 
-playRound();
+//playRound();
+
+//event listeners on all three buttons 'click'
+//when one is clicked, fire off a function, pass in id of button
+//assign userchoice variable based on id that's passed in
+//determine winner function
+//print result to h1
+
+const btns = document.querySelectorAll('button');
+
+btns.forEach((btn) => {
+
+  btn.addEventListener('click', () => {
+console.log(btn.id);
+  });
+  
+});

@@ -1,12 +1,56 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Page Title</title>
-  <link rel="stylesheet" href="./output.css">
-  <script src="javascript.js" defer></script>
-</head>
-<body>
-  <h1 class="text-9xl">Hello World</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Page Title</title>
+    <link rel="stylesheet" href="./output.css" />
+    <script src="javascript.js" defer></script>
+  </head>
+  <body class="h-screen w-full flex items-center justify-center">
+    <div class="flex flex-col gap-12 items-center">
+      <div class="flex flex-col gap-6 justify-center">
+        <h1 class="text-4xl font-semibold">Let's play rock paper scissors!</h1>
+        <div class="flex flex-col gap-1 items-center">
+          <div
+            class="flex flex-row justify-between items-center py-3 border-t border-zinc-300 last:border-b w-72"
+          >
+            <p class="text-sm">Your Score</p>
+            <p class="text-sm font-bold">0</p>
+          </div>
+          <div
+            class="flex flex-row justify-between items-center py-3 border-t border-zinc-300 last:border-b w-72"
+          >
+            <p class="text-sm">Computer Score</p>
+            <p class="text-sm font-bold">0</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-row gap-5">
+        <button
+          class="bg-zinc-100 rounded-lg flex flex-col items-center justify-center gap-2 w-44 h-44 hover:bg-zinc-200 hover:-translate-y-1 transition-all"
+          id="rock-button"
+        >
+          <p class="text-6xl">✊</p>
+          <p class="text-sm text-zinc-500">Rock</p>
+        </button>
+
+        <button
+          class="bg-zinc-100 rounded-lg flex flex-col items-center justify-center gap-2 w-44 h-44 hover:bg-zinc-200 hover:-translate-y-1 transition-all"
+          id="paper-button"
+        >
+          <p class="text-6xl">✋</p>
+          <p class="text-sm text-zinc-500">Paper</p>
+        </button>
+
+        <button
+          class="bg-zinc-100 rounded-lg flex flex-col items-center justify-center gap-2 w-44 h-44 hover:bg-zinc-200 hover:-translate-y-1 transition-all"
+          id="scissors-button"
+        >
+          <p class="text-6xl">✌️</p>
+          <p class="text-sm text-zinc-500">Scissors</p>
+        </button>
+      </div>
+    </div>
+  </body>
 </html>
