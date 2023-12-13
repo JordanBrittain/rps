@@ -5,12 +5,6 @@ function getComputerChoice() {
   return options[choice];
 }
 
-//capture user choice function
-function getUserChoice() {
-  const userChoice = prompt("Rock, Paper, or Scissors?");
-  return userChoice.toLowerCase();
-}
-
 //function for determining winner
 function getWinner(userSelection, computerSelection) {
   let roundWinner = "";
@@ -40,24 +34,7 @@ function updateScore(winner, userScore, computerScore) {
   return [userScore, computerScore];
 }
 
-function sendScoreUpdate(winner, userScore, computerScore) {
-  let totalScoreCopy =
-    "computer total score is " +
-    computerScore +
-    ", your total score is " +
-    userScore;
-  switch (winner) {
-    case "tie":
-      console.log("Its a tie! " + totalScoreCopy);
-      break;
-    case "user":
-      console.log("You won! " + totalScoreCopy);
-      break;
-    case "computer":
-      console.log("You lost :( " + totalScoreCopy);
-      break;
-  }
-}
+
 
 function game(userScore, computerScore) {
   let computerSelection = getComputerChoice();
@@ -97,12 +74,80 @@ function playRound() {
 //determine winner function
 //print result to h1
 
-const btns = document.querySelectorAll('button');
+function convertButtonToChoice(id) {
+  switch (id) {
+    case "rock-button":
+      userChoice = "rock";
+      break;
+
+    case "paper-button":
+      userChoice = "paper";
+      break;
+
+    case "scissors-button":
+      userChoice = "scissors";
+      break;
+
+    default:
+      userChoice = "invalid";
+      break;
+  }
+
+  return userChoice;
+}
+
+
+function createWinnerText(winner) {
+  let winnerText = '';
+  switch (winner) {
+    case "tie":
+      winnerText = "Its a tie!";
+      break;
+    case "user":
+      winnerText = "You won!";
+      break;
+    case "computer":
+      winnerText = "You lost :(";
+      break;
+  }
+
+  return winnerText;
+}
+
+
+const btns = document.querySelectorAll("button");
+const userScoreUI = document.querySelector('#user-score');
+const computerScoreUI = document.querySelector('#computer-score');
+const headingText = document.querySelector('#heading-text');
+
+function updateUI(winner, userScore, computerScore) {
+  userScoreUI.textContent = userScore;
+  computerScoreUI.textContent = computerScore;
+  headingText.textContent = createWinnerText(winner);
+
+}
+
+let userScore = 0;
+let computerScore = 0;
+
 
 btns.forEach((btn) => {
+  btn.addEventListener("click", () => {
 
-  btn.addEventListener('click', () => {
-console.log(btn.id);
+
+
+    let computerChoice = getComputerChoice();
+    let userChoice = "";
+    userChoice = convertButtonToChoice(btn.id);
+
+    let winner = getWinner(userChoice, computerChoice);
+
+    [userScore, computerScore] = updateScore(winner, userScore, computerScore);
+
+    console.log(userScore);
+    updateUI(winner, userScore, computerScore);
+
   });
-  
 });
+
+
